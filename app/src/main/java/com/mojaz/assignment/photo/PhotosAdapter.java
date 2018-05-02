@@ -5,11 +5,13 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
+import android.util.SparseBooleanArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -19,7 +21,7 @@ import com.mojaz.assignment.model.Photo;
 
 import java.util.List;
 
-public class PhotosAdapter extends ArrayAdapter<Photo> {
+class PhotosAdapter extends ArrayAdapter<Photo> implements CompoundButton.OnCheckedChangeListener {
 
     private final Context mContext;
 
@@ -27,12 +29,15 @@ public class PhotosAdapter extends ArrayAdapter<Photo> {
 
     private final Drawable mPlaceHolder;
 
+    private SparseBooleanArray mSelectedPhotos;
+
     PhotosAdapter(Context context, List<Photo> photoList){
         super(context, 0, photoList);
 
         mContext = context;
         mPhotoList = photoList;
         mPlaceHolder = new ColorDrawable(Color.GRAY);
+        mSelectedPhotos = new SparseBooleanArray(photoList.size());
     }
 
     @NonNull
@@ -53,8 +58,10 @@ public class PhotosAdapter extends ArrayAdapter<Photo> {
             viewHolder = (ViewHolder) listItemView.getTag();
         }
 
+        // Get current photo object
         Photo photo = mPhotoList.get(position);
 
+        // Set title
         viewHolder.title.setText(photo.getTitle());
 
         // Set image
@@ -64,7 +71,21 @@ public class PhotosAdapter extends ArrayAdapter<Photo> {
                 .crossFade()
                 .into(viewHolder.image);
 
+        // Checkbox
+        viewHolder.checkBox.setTag(position);
+        viewHolder.checkBox.setChecked(mSelectedPhotos.get(position, false));
+        viewHolder.checkBox.setOnCheckedChangeListener(this);
+
         return listItemView;
+    }
+
+    public SparseBooleanArray getSelectedPhotos() {
+        return mSelectedPhotos;
+    }
+
+    @Override
+    public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+        mSelectedPhotos.put((Integer) compoundButton.getTag(), b);
     }
 
     private static class ViewHolder {

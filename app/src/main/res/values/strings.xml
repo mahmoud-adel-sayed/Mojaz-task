@@ -6,4 +6,8 @@
     </string>
     <string name="general_err">Something went wrong, please try again later.</string>
     <string name="no_photos_label">There is no photos</string>
+    <string name="min_items_err">You have to choose at least one item</string>
+    <string name="max_items_err">You have to choose at most ten item</string>
+
+    <string name="done_btn_label">Done</string>
 </resources>

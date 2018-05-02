@@ -3,6 +3,7 @@ package com.mojaz.assignment.photo;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.SparseBooleanArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -57,6 +58,15 @@ public class PhotosFragment extends Fragment implements PhotosContract.View {
         mProgress = view.findViewById(R.id.loading_spinner);
         mErrorTV = (TextView) view.findViewById(R.id.empty_view);
 
+        // Listen for done button click
+        view.findViewById(R.id.done_btn).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                SparseBooleanArray selectedPhotos = mAdapter.getSelectedPhotos();
+                mPresenter.doneFiltering(selectedPhotos, mPhotoList);
+            }
+        });
+
         // Setup ListView
         ListView listView = (ListView) view.findViewById(R.id.photos_list);
         listView.setAdapter(mAdapter);
@@ -91,8 +101,30 @@ public class PhotosFragment extends Fragment implements PhotosContract.View {
     }
 
     @Override
+    public void filterList(List<Photo> filteredList) {
+        // Clear the old data
+        mPhotoList.clear();
+
+        // Add filtered data & notify the adapter
+        mPhotoList.addAll(filteredList);
+        mAdapter.notifyDataSetChanged();
+    }
+
+    @Override
     public void showError(String error) {
         Toast.makeText(getActivity(), error, Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void showMessage(int code) {
+        switch (code) {
+            case PhotosPresenter.MAXIMUM_ITEMS:
+                Toast.makeText(getActivity(), R.string.max_items_err, Toast.LENGTH_LONG).show();
+                break;
+            case PhotosPresenter.MINIMUM_ITEMS:
+                Toast.makeText(getActivity(), R.string.min_items_err, Toast.LENGTH_LONG).show();
+                break;
+        }
     }
 
     @Override

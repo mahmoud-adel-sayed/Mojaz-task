@@ -4,11 +4,20 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <Button
+        android:id="@+id/done_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/activity_horizontal_margin"
+        android:layout_alignParentBottom="true"
+        android:text="@string/done_btn_label"/>
+
     <!-- Main list of items -->
     <ListView
         android:id="@+id/photos_list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_above="@id/done_btn"
         android:dividerHeight="1dp" />
 
     <!-- Empty view is only visible when the list has no items. -->
