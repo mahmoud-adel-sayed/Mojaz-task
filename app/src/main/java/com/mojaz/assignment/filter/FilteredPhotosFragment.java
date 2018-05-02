@@ -4,5 +4,5 @@ import android.app.Fragment;
 
 public class FilteredPhotosFragment extends Fragment {
 
-    
+
 }
