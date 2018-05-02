@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">assignment</string>
+
+    <string name="no_internet_connection_error">
+        No internet connection, please connect and try again
+    </string>
+    <string name="general_err">Something went wrong, please try again later.</string>
+    <string name="no_photos_label">There is no photos</string>
 </resources>
