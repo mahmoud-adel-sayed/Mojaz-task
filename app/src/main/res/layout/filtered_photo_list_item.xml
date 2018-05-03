@@ -13,23 +13,15 @@
         android:adjustViewBounds="true"
         android:scaleType="centerCrop" />
 
-    <CheckBox
-        android:id="@+id/check_box"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_centerVertical="true" />
-
     <!-- Item title & album -->
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:layout_marginEnd="@dimen/activity_horizontal_margin"
         android:layout_marginStart="@dimen/activity_horizontal_margin"
         android:layout_centerVertical="true"
-        android:layout_toEndOf="@id/item_image"
-        android:layout_toStartOf="@id/check_box">
+        android:layout_toEndOf="@id/item_image">
 
         <TextView
             android:id="@+id/item_title"

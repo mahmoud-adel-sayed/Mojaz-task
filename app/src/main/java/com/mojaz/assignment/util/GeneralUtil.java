@@ -41,10 +41,10 @@ public class GeneralUtil {
      * The {@code fragment} is added to the container view with id {@code frameId} and tag {@code tag}.
      * The operation is performed by the {@code fragmentManager}.
      */
-    public static void addFragmentToContainer(FragmentManager fragmentManager,
-                                              Fragment fragment, int frameId, String tag) {
+    public static void replaceFragment(FragmentManager fragmentManager, Fragment fragment,
+                                       int frameId, String tag) {
         fragmentManager.beginTransaction()
-                .add(frameId, fragment, tag)
+                .replace(frameId, fragment, tag)
                 .commit();
     }
 

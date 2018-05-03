@@ -10,6 +10,8 @@
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/activity_horizontal_margin"
         android:layout_alignParentBottom="true"
+        android:background="@color/colorAccent"
+        android:textColor="@android:color/white"
         android:text="@string/done_btn_label"/>
 
     <!-- Main list of items -->

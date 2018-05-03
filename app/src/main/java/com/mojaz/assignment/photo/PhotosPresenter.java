@@ -1,5 +1,6 @@
 package com.mojaz.assignment.photo;
 
+import android.util.Log;
 import android.util.SparseBooleanArray;
 
 import com.mojaz.assignment.model.Photo;
@@ -46,9 +47,14 @@ class PhotosPresenter implements PhotosContract.Presenter {
         List<Photo> filteredList = new ArrayList<>();
 
         for (int i = 0; i < selectedPhotos.size(); i++) {
-            if (selectedPhotos.get(i)) {
+            // get index of this photo
+            int key = selectedPhotos.keyAt(i);
+
+            if (selectedPhotos.get(key)) {
+                Log.e("key", " " + key);
+
                 // Add this photo to the filtered list
-                filteredList.add(allPhotos.get(i));
+                filteredList.add(allPhotos.get(key));
 
                 // User selected more than ten items
                 if (filteredList.size() > MAXIMUM_ITEMS) {

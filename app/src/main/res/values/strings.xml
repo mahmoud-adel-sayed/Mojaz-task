@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">assignment</string>
 
+    <!-- Errors & messages -->
     <string name="no_internet_connection_error">
         No internet connection, please connect and try again
     </string>
@@ -9,5 +10,10 @@
     <string name="min_items_err">You have to choose at least one item</string>
     <string name="max_items_err">You have to choose at most ten item</string>
 
-    <string name="done_btn_label">Done</string>
+    <!-- Titles -->
+    <string name="all_photos_label">Check to filter this list</string>
+    <string name="filtered_photos_label">filtered list</string>
+
+    <string name="album_id_format">Album id: %d</string>
+    <string name="done_btn_label">Filter Done</string>
 </resources>

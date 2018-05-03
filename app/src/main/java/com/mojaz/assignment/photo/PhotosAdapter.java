@@ -37,7 +37,7 @@ class PhotosAdapter extends ArrayAdapter<Photo> implements CompoundButton.OnChec
         mContext = context;
         mPhotoList = photoList;
         mPlaceHolder = new ColorDrawable(Color.GRAY);
-        mSelectedPhotos = new SparseBooleanArray(photoList.size());
+        mSelectedPhotos = new SparseBooleanArray();
     }
 
     @NonNull
@@ -64,6 +64,10 @@ class PhotosAdapter extends ArrayAdapter<Photo> implements CompoundButton.OnChec
         // Set title
         viewHolder.title.setText(photo.getTitle());
 
+        // Set Album id
+        viewHolder.album.setText(String.format(
+                mContext.getString(R.string.album_id_format), photo.getAlbumId()));
+
         // Set image
         Glide.with(mContext)
                 .load(photo.getThumbnailUrl())
@@ -84,17 +88,19 @@ class PhotosAdapter extends ArrayAdapter<Photo> implements CompoundButton.OnChec
     }
 
     @Override
-    public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-        mSelectedPhotos.put((Integer) compoundButton.getTag(), b);
+    public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
+        mSelectedPhotos.put((Integer) compoundButton.getTag(), isChecked);
     }
 
     private static class ViewHolder {
-        private final ImageView image;
-        private final TextView title;
-        private final CheckBox checkBox;
+        private ImageView image;
+        private TextView title;
+        private TextView album;
+        private CheckBox checkBox;
 
         private ViewHolder(View v){
             title = (TextView) v.findViewById(R.id.item_title);
+            album = (TextView) v.findViewById(R.id.item_album);
             image = (ImageView) v.findViewById(R.id.item_image);
             checkBox = (CheckBox) v.findViewById(R.id.check_box);
         }

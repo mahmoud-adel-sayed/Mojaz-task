@@ -102,12 +102,10 @@ public class PhotosFragment extends Fragment implements PhotosContract.View {
 
     @Override
     public void filterList(List<Photo> filteredList) {
-        // Clear the old data
-        mPhotoList.clear();
-
-        // Add filtered data & notify the adapter
-        mPhotoList.addAll(filteredList);
-        mAdapter.notifyDataSetChanged();
+        // notify the activity to replace the fragment
+        if (getActivity() instanceof PhotosActivity) {
+            ((PhotosActivity)getActivity()).replaceWithFiltered(filteredList);
+        }
     }
 
     @Override
