@@ -1,7 +1,7 @@
 # Mojaz-task ( Simple photo filtering app )
 
 #### Archetecture Of The App
-This app uses MVP Archetecture, a well know archetecture for Android, the app's components less dependenent and makes the app more easier to test.
+This app uses MVP Archetecture, a well known archetecture for Android, the app's components are less dependenents and easier to test.
 
 #### Libraries used by this app
 1. Retrofit for networking (makes networking code more easy to read & understand)
